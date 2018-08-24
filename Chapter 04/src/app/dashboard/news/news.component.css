@@ -1,0 +1,13 @@
+thead {
+  color: #337AB7;
+}
+.panel-primary{
+border-color: #87396b;
+}
+.panel-heading{
+background-color: #87396b;
+border-color: #87396b;
+}
+.item-block {
+display: block;
+}
