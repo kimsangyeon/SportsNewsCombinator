@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import News from '../../../models/news';
-import Article from '../../../models/article';
+import {News} from '../../../models/news';
+import {Article} from '../../../models/article';
 
 @Component({
   selector: 'app-news',
@@ -24,7 +24,7 @@ export class NewsComponent implements OnInit {
     return news;
   }
 
-  private seedArcticles(): Article[] {
+  private seedArticles(): Article[] {
     let articles: Article[] = new Array();
     articles.push({
       author:"Lakisha Jackson",
