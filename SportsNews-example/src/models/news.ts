@@ -1,8 +1,8 @@
-import Article from './article';
+import {Article} from './article';
 
 export class News {
-  status: string;
-  source: string;
-  sortBy: string;
+  status:string;
+  source:string;
+  sortBy:string;
   articles: Article[];
 }
