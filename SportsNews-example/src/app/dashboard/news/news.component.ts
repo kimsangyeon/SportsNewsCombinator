@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {News} from '../../../models/news';
 import {Article} from '../../../models/article';
 import {NewsapiService} from '../../service/newsapi.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -10,11 +11,14 @@ import {NewsapiService} from '../../service/newsapi.service';
 })
 export class NewsComponent implements OnInit {
 
-  latest_news:News = new News();
+  source:string;
+  latest_news: News = new News("OK",this.source,"top");
+  errorMessage = '';
+  feedType: string;
 
-  constructor(private _service:NewsapiService) {
-  }
+  constructor(private _service:NewsapiService, private route: ActivatedRoute) {}
 
+  /*
   private seedNewsData():News {
     let news:News = new News();
     news.status = "ok";
@@ -24,8 +28,7 @@ export class NewsComponent implements OnInit {
 
     return news;
   }
-  
-/*
+
   private seedArticles(): Article[] {
     let articles: Article[] = new Array();
     articles.push({
@@ -48,7 +51,7 @@ export class NewsComponent implements OnInit {
 
     return articles;
   }
-*/
+  */
 
   ngOnInit() {
     this.route.data.subscribe(data => {
