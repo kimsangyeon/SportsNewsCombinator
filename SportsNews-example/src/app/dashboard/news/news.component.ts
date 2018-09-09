@@ -24,7 +24,8 @@ export class NewsComponent implements OnInit {
 
     return news;
   }
-
+  
+/*
   private seedArticles(): Article[] {
     let articles: Article[] = new Array();
     articles.push({
@@ -47,9 +48,19 @@ export class NewsComponent implements OnInit {
 
     return articles;
   }
+*/
 
   ngOnInit() {
-    this.latest_news = this.seedNewsData();
+    this.route.data.subscribe(data => {
+      this.feedType = (data as any).feedType;
+      this.source = (data as any).source;
+    });
+
+    this._service.fetchNewsFeed(this.feedType)
+      .subscribe(
+        items => this.latest_news = items,
+        error => {this.errorMessage = 'Could not load ' + this.feedType + ' stories.'; console.log(this.errorMessage)}
+      );
   }
 
 }
