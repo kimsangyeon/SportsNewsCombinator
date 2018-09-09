@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {News} from '../../../models/news';
 import {Article} from '../../../models/article';
+import {NewsapiService} from '../../service/newsapi.service';
 
 @Component({
   selector: 'app-news',
@@ -11,7 +12,7 @@ export class NewsComponent implements OnInit {
 
   latest_news:News = new News();
 
-  constructor() {
+  constructor(private _service:NewsapiService) {
   }
 
   private seedNewsData():News {
