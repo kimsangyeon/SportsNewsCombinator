@@ -6,6 +6,8 @@ import { NewsComponent } from './dashboard/news/news.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 
+import { NewsapiService } from './service/newsapi.service';
+
 @NgModule({
   declarations: [  // 모듈에 속한 component 목록
     AppComponent,
@@ -16,7 +18,7 @@ import { FooterComponent } from './core/footer/footer.component';
   imports: [  // 외부 모듈
     BrowserModule
   ],
-  providers: [],  // 참조하려는 서비스
+  providers: [NewsapiService],  // 참조하려는 서비스
   bootstrap: [AppComponent] // 시작 컴포넌트
 })
 export class AppModule { }
