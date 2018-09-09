@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {News} from '../../../models/news';
 import {Article} from '../../../models/article';
+import {NewsapiService} from '../../service/newsapi.service';
 
 @Component({
   selector: 'app-news',
@@ -11,7 +12,7 @@ export class NewsComponent implements OnInit {
 
   latest_news:News = new News();
 
-  constructor() {
+  constructor(private _service:NewsapiService) {
   }
 
   private seedNewsData():News {
@@ -23,7 +24,8 @@ export class NewsComponent implements OnInit {
 
     return news;
   }
-
+  
+/*
   private seedArticles(): Article[] {
     let articles: Article[] = new Array();
     articles.push({
@@ -46,9 +48,19 @@ export class NewsComponent implements OnInit {
 
     return articles;
   }
+*/
 
   ngOnInit() {
-    this.latest_news = this.seedNewsData();
+    this.route.data.subscribe(data => {
+      this.feedType = (data as any).feedType;
+      this.source = (data as any).source;
+    });
+
+    this._service.fetchNewsFeed(this.feedType)
+      .subscribe(
+        items => this.latest_news = items,
+        error => {this.errorMessage = 'Could not load ' + this.feedType + ' stories.'; console.log(this.errorMessage)}
+      );
   }
 
 }
